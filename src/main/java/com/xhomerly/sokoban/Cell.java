@@ -1,7 +1,23 @@
 package com.xhomerly.sokoban;
 
-public abstract class Cell {
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+
+public abstract class Cell extends StackPane {
     private int x, y;
+    private ImageView imageView;
+
+    public Cell(int x, int y, String imagePath) {
+        this.x = x;
+        this.y = y;
+        this.imageView = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
+
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+
+        getChildren().add(imageView);
+    }
 
     public void setX(int x) {
         this.x = x;

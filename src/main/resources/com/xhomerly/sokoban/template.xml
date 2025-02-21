@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <map>
-
+    <row id="0">
+        <col id="0">1</col>  <!-- 1 = Wall -->
+        <col id="1">2</col>  <!-- 2 = Ground -->
+        <col id="2">3</col>  <!-- 3 = Crate -->
+        <col id="3">4</col>  <!-- 4 = Player -->
+        <col id="4">1</col>  <!-- 1 = Wall -->
+    </row>
+    <row id="1">
+        <col id="0">0</col>
+        <col id="1">1</col>
+        <col id="2">2</col>
+        <col id="3">3</col>
+        <col id="4">1</col>
+    </row>
 </map>

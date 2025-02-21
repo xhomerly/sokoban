@@ -1,7 +1,7 @@
 package com.xhomerly.sokoban;
 
-import javafx.scene.image.ImageView;
-
 public class DeliveryPoint extends Cell {
-    private final ImageView image = new ImageView("images/delivery_point.png");
+    public DeliveryPoint(int x, int y) {
+        super(x, y, "images/delivery_point.png");
+    }
 }
