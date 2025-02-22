@@ -10,8 +10,8 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        GridPane root = new GridPane();
-        Scene scene = new Scene(root, 600, 600);
+        GridPane root = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/template.xml");
+        Scene scene = new Scene(root);
         stage.getIcons().add(new Image(Application.class.getResourceAsStream("icon.png")));
         stage.setTitle("Sokoban");
 
@@ -26,7 +26,6 @@ public class Application extends javafx.application.Application {
     }
 
     public void controller(GridPane root) {
-        Wall wall = new Wall(0,0);
 
     }
 }

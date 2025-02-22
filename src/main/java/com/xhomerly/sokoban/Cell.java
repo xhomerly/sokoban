@@ -13,8 +13,8 @@ public abstract class Cell extends StackPane {
         this.y = y;
         this.imageView = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
 
-        imageView.setFitWidth(40);
-        imageView.setFitHeight(40);
+        imageView.setFitWidth(45);
+        imageView.setFitHeight(45);
 
         getChildren().add(imageView);
     }
