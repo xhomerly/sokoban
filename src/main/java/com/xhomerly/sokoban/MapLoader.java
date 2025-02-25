@@ -71,7 +71,6 @@ public class MapLoader {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,7 +194,7 @@ public class MapLoader {
 
     private static void drawCrate(Crate crate, boolean crateStartingPosition, GridPane gridPane) {
         if (crateStartingPosition) {
-            gridPane.add(crate, crate.getX(), crate.getY()); //TODO: jaky je rozdil mezi Crate a crate?
+            gridPane.add(crate, crate.getX(), crate.getY());
         } else {
             gridPane.getChildren().remove(crate);
             gridPane.add(crate, crate.getX(), crate.getY());
