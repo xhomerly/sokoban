@@ -1,6 +1,5 @@
 package com.xhomerly.sokoban;
 
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
