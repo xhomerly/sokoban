@@ -1,77 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- 0 = EmptyCell -->
-<!-- 1 = Wall -->
-<!-- 2 = Ground -->
-<!-- 3 = Crate -->
-<!-- 4 = DeliveryPoint -->
-<!-- player_position? = Player -->
+<!-- wall -->
+<!-- crate -->
+<!-- delivery_point -->
+<!-- player_starting_position="True" -->
 
-<!--TODO: <item x="0" y="0" type="wall" />-->
+<map width="8" height="5">
+    <tile x="0" y="0" type="wall" />
+    <tile x="1" y="0" type="wall" />
+    <tile x="2" y="0" type="wall" />
+    <tile x="3" y="0" type="wall" />
+    <tile x="4" y="0" type="wall" />
+    <tile x="5" y="0" type="wall" />
+    <tile x="6" y="0" type="wall" />
+    <tile x="7" y="0" type="wall" />
 
-<map>
-    <row>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-    </row>
-    <row>
-        <col>1</col>
-        <col player_position="True">2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>1</col>
-    </row>
+    <tile x="0" y="1" type="wall" />
+    <tile x="1" y="1" type="delivery_point" />
+    <tile x="2" y="1" />
+    <tile x="3" y="1" player_starting_position="True" />
+    <tile x="4" y="1" />
+    <tile x="5" y="1" />
+    <tile x="6" y="1" />
+    <tile x="7" y="1" type="wall" />
 
-    <row>
-        <col>1</col>
-        <col>2</col>
-        <col>4</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>1</col>
-    </row>
-    <row>
-        <col>1</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>1</col>
-    </row>
-    <row>
-        <col>1</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>3</col>
-        <col>2</col>
-        <col>1</col>
-    </row>
-    <row>
-        <col>1</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>2</col>
-        <col>1</col>
-    </row>
-    <row>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-        <col>1</col>
-    </row>
+    <tile x="0" y="2" type="wall" />
+    <tile x="1" y="2" />
+    <tile x="2" y="2" />
+    <tile x="3" y="2" />
+    <tile x="4" y="2" />
+    <tile x="5" y="2" type="crate" />
+    <tile x="6" y="2" />
+    <tile x="7" y="2" type="wall" />
+
+    <tile x="0" y="3" type="wall" />
+    <tile x="1" y="3" />
+    <tile x="2" y="3" />
+    <tile x="3" y="3" />
+    <tile x="4" y="3" />
+    <tile x="5" y="3" />
+    <tile x="6" y="3" />
+    <tile x="7" y="3" type="wall" />
+
+    <tile x="0" y="4" type="wall" />
+    <tile x="1" y="4" type="wall" />
+    <tile x="2" y="4" type="wall" />
+    <tile x="3" y="4" type="wall" />
+    <tile x="4" y="4" type="wall" />
+    <tile x="5" y="4" type="wall" />
+    <tile x="6" y="4" type="wall" />
+    <tile x="7" y="4" type="wall" />
 </map>

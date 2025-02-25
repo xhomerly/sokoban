@@ -14,6 +14,7 @@ public class MapLoader {
     public static GridPane loadMap(String filePath) {
         GridPane gridPane = new GridPane();
         gridPane.setStyle("-fx-background-color: black;");
+        Player player;
 
         try {
             File file = new File(filePath);
@@ -22,22 +23,41 @@ public class MapLoader {
             Document document = builder.parse(file);
             document.getDocumentElement().normalize();
 
-            NodeList rows = document.getElementsByTagName("row");
+            Element mapElement = document.getDocumentElement();
+            int width = Integer.parseInt(mapElement.getAttribute("width"));
+            int height = Integer.parseInt(mapElement.getAttribute("height"));
 
-            for (int i = 0; i < rows.getLength(); i++) {
-                Node rowNode = rows.item(i);
-                if (rowNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element row = (Element) rowNode;
-                    NodeList cols = row.getElementsByTagName("col");
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    Ground ground = new Ground(x, y);
+                    gridPane.add(ground, x, y);
+                }
+            }
 
-                    for (int j = 0; j < cols.getLength(); j++) {
-                        Element col = (Element) cols.item(j);
-                        int value = Integer.parseInt(col.getTextContent().trim());
-                        Cell cell = createCell(value, i, j);
-                        gridPane.add(cell, j, i);
+            NodeList tiles = document.getElementsByTagName("tile");
+
+            for (int i = 0; i < tiles.getLength(); i++) {
+                Node tileNode = tiles.item(i);
+                if (tileNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element tile = (Element) tileNode;
+
+                    int x = Integer.parseInt(tile.getAttribute("x"));
+                    int y = Integer.parseInt(tile.getAttribute("y"));
+                    String type = tile.getAttribute("type");
+
+                    boolean isPlayer = tile.hasAttribute("player_starting_position") &&
+                            tile.getAttribute("player_starting_position").equalsIgnoreCase("True");
+
+                    Cell cell = createCell(type, x, y);
+                    gridPane.add(cell, x, y);
+
+                    if (isPlayer) {
+                        player = new Player(x, y);
+                        gridPane.add(player, x, y);
                     }
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,12 +65,11 @@ public class MapLoader {
         return gridPane;
     }
 
-    private static Cell createCell(int value, int x, int y) {
-        return switch (value) {
-            case 1 -> new Wall(x, y);
-            case 2 -> new Ground(x, y);
-            case 3 -> new Crate(x, y);
-            case 4 -> new DeliveryPoint(x, y);
+    private static Cell createCell(String type, int x, int y) {
+        return switch (type) {
+            case "wall" -> new Wall(x, y);
+            case "crate" -> new Crate(x, y);
+            case "delivery_point" -> new DeliveryPoint(x, y);
             default -> new EmptyCell(x, y);
         };
     }

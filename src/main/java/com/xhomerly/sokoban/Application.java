@@ -1,31 +1,22 @@
 package com.xhomerly.sokoban;
 
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.Objects;
 
 public class Application extends javafx.application.Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        GridPane root = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/template.xml");
-        Scene scene = new Scene(root);
-        stage.getIcons().add(new Image(Application.class.getResourceAsStream("icon.png")));
+    public void start(Stage stage) {
+        stage.getIcons().add(new Image(Objects.requireNonNull(Application.class.getResourceAsStream("icon.png"))));
         stage.setTitle("Sokoban");
+        stage.setResizable(false);
 
-        controller(root);
-
-        stage.setScene(scene);
-        stage.show();
+        Menu menu = new Menu(stage);
+        menu.show();
     }
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public void controller(GridPane root) {
-
     }
 }
