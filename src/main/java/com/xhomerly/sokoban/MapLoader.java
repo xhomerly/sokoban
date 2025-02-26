@@ -15,6 +15,7 @@ import java.util.List;
 public class MapLoader {
     static Player player;
     static List<Crate> crates = new ArrayList<>();
+    static List<Wall> walls = new ArrayList<>();
     static GridPane gridPane = new GridPane();
     static int winX, winY;
 
@@ -65,9 +66,14 @@ public class MapLoader {
                         crates.add(crate);
                         drawCrate(crate, true, gridPane);
                     }
-                    if (type.equals("delivery_point")) {
+                    if (type.equals("delivery_point")) { //TODO: vice delivery_pointu vyresit, do Cell pridat x,y?
                         winX = x;
                         winY = y;
+                    }
+                    if (type.equals("wall")) {
+                        Wall wall = new Wall(x, y);
+                        walls.add(wall);
+                        gridPane.add(wall, x, y);
                     }
                 }
             }
@@ -80,7 +86,6 @@ public class MapLoader {
 
     private static Cell createCell(String type) {
         return switch (type) {
-            case "wall" -> new Wall();
             case "delivery_point" -> new DeliveryPoint();
             default -> new EmptyCell();
         };
@@ -108,17 +113,21 @@ public class MapLoader {
 
                 if (crateToMove != null) {
                     //TODO: co tohle kurva chceckuje?
-                    boolean canMoveCrate = isCellEmpty(crateToMove.getX(), crateToMove.getY()-1);
+                    boolean canMove = isCellEmpty(crateToMove.getX(), crateToMove.getY()-1);
 
-                    if (canMoveCrate) {
+                    if (canMove) {
                         crateToMove.setY(crateToMove.getY()-1);
                         drawCrate(crateToMove, false, gridPane);
                         Player.setY(Player.getY()-1);
                         drawPlayer(player, false, gridPane);
                     }
                 } else {
-                    Player.setY(Player.getY()-1);
-                    drawPlayer(player, false, gridPane);
+                    boolean canMove = isCellEmpty(Player.getX(), Player.getY()-1);
+
+                    if (canMove) {
+                        Player.setY(Player.getY()-1);
+                        drawPlayer(player, false, gridPane);
+                    }
                 }
             }
             case "S" -> {
@@ -131,17 +140,21 @@ public class MapLoader {
                 }
 
                 if (crateToMove != null) {
-                    boolean canMoveCrate = isCellEmpty(crateToMove.getX(), crateToMove.getY()+1);
+                    boolean canMove = isCellEmpty(crateToMove.getX(), crateToMove.getY()+1);
 
-                    if (canMoveCrate) {
+                    if (canMove) {
                         crateToMove.setY(crateToMove.getY()+1);
                         drawCrate(crateToMove, false, gridPane);
                         Player.setY(Player.getY()+1);
                         drawPlayer(player, false, gridPane);
                     }
                 } else {
-                    Player.setY(Player.getY()+1);
-                    drawPlayer(player, false, gridPane);
+                    boolean canMove = isCellEmpty(Player.getX(), Player.getY()+1);
+
+                    if (canMove) {
+                        Player.setY(Player.getY()+1);
+                        drawPlayer(player, false, gridPane);
+                    }
                 }
             }
             case "A" -> {
@@ -154,17 +167,21 @@ public class MapLoader {
                 }
 
                 if (crateToMove != null) {
-                    boolean canMoveCrate = isCellEmpty(crateToMove.getX()-1, crateToMove.getY());
+                    boolean canMove = isCellEmpty(crateToMove.getX()-1, crateToMove.getY());
 
-                    if (canMoveCrate) {
+                    if (canMove) {
                         crateToMove.setX(crateToMove.getX()-1);
                         drawCrate(crateToMove, false, gridPane);
                         Player.setX(Player.getX()-1);
                         drawPlayer(player, false, gridPane);
                     }
                 } else {
-                    Player.setX(Player.getX()-1);
-                    drawPlayer(player, false, gridPane);
+                    boolean canMove = isCellEmpty(Player.getX()-1, Player.getY());
+
+                    if (canMove) {
+                        Player.setX(Player.getX()-1);
+                        drawPlayer(player, false, gridPane);
+                    }
                 }
             }
             case "D" -> {
@@ -177,17 +194,21 @@ public class MapLoader {
                 }
 
                 if (crateToMove != null) {
-                    boolean canMoveCrate = isCellEmpty(crateToMove.getX()+1, crateToMove.getY());
+                    boolean canMove = isCellEmpty(crateToMove.getX()+1, crateToMove.getY());
 
-                    if (canMoveCrate) {
+                    if (canMove) {
                         crateToMove.setX(crateToMove.getX()+1);
                         drawCrate(crateToMove, false, gridPane);
                         Player.setX(Player.getX()+1);
                         drawPlayer(player, false, gridPane);
                     }
                 } else {
-                    Player.setX(Player.getX()+1);
-                    drawPlayer(player, false, gridPane);
+                    boolean canMove = isCellEmpty(Player.getX()+1, Player.getY());
+
+                    if (canMove) {
+                        Player.setX(Player.getX()+1);
+                        drawPlayer(player, false, gridPane);
+                    }
                 }
             }
         }
@@ -208,8 +229,13 @@ public class MapLoader {
 
     private static boolean isCellEmpty(int x, int y) {
         for (Crate crate : crates) {
-            if (crate.getX() == x && crate.getY() == y) {
+            if (x == crate.getX() && y == crate.getY()) {
                 return false;
+            }
+            for (Wall wall : walls) {
+                if (x == wall.getX() && y == wall.getY()) {
+                    return false;
+                }
             }
         }
         return true;
