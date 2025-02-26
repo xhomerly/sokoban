@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!-- wall -->
-<!-- delivery_point -->
+<!-- type="wall" -->
+<!-- type="delivery_point" -->
 <!-- player_starting_position="true" -->
 <!-- crate_starting_position="true" -->
 
