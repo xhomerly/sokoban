@@ -7,8 +7,8 @@ import javafx.scene.layout.StackPane;
 import java.util.Objects;
 
 public abstract class Cell extends StackPane {
-    public Cell(String imagePath) {
-        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
+    public Cell(Image image) {
+        ImageView imageView = new ImageView(image);
 
         imageView.setFitWidth(45);
         imageView.setFitHeight(45);

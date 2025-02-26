@@ -2,16 +2,23 @@ package com.xhomerly.sokoban;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import java.util.Objects;
 
 public class Player extends Cell {
     private static int x, y;
 
     public Player(int x, int y) {
-        super("images/Player/player_01.png");
+        super(loadImage());
         Player.x = x;
         Player.y = y;
+    }
+
+    private static Image loadImage() {
+        return new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/Player/player_01.png")));
     }
 
     public static int getX() {

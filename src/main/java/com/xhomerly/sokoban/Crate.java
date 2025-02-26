@@ -1,12 +1,20 @@
 package com.xhomerly.sokoban;
 
+import javafx.scene.image.Image;
+
+import java.util.Objects;
+
 public class Crate extends Cell {
     private int x, y;
 
     public Crate(int x, int y) {
-        super("images/crate_01.png");
+        super(loadImage());
         this.x = x;
         this.y = y;
+    }
+
+    private static Image loadImage() {
+        return new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/crate_01.png")));
     }
 
     public int getX() {
