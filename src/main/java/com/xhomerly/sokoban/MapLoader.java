@@ -21,8 +21,8 @@ public class MapLoader {
     static Player player;
     static List<Crate> crates = new ArrayList<>();
     static List<Wall> walls = new ArrayList<>();
+    static List<DeliveryPoint> delivery_points = new ArrayList<>();
     static GridPane gridPane = new GridPane();
-    static int winX, winY;
     static StackPane root = new StackPane();
 
     public static StackPane loadMap(String filePath) {
@@ -64,26 +64,23 @@ public class MapLoader {
                     boolean isCrate = tile.hasAttribute("crate_starting_position") &&
                             tile.getAttribute("crate_starting_position").equalsIgnoreCase("True");
 
-                    Cell cell = createCell(type);
-                    gridPane.add(cell, x, y);
-
                     if (isPlayer) {
                         player = new Player(x, y);
                         drawPlayer(player, true, gridPane);
-                    }
-                    if (isCrate) {
+                    } else if (isCrate) {
                         Crate crate = new Crate(x, y);
                         crates.add(crate);
                         drawCrate(crate, true, gridPane);
-                    }
-                    if (type.equals("delivery_point")) { //TODO: vice delivery_pointu vyresit, do Cell pridat x,y?
-                        winX = x;
-                        winY = y;
-                    }
-                    if (type.equals("wall")) {
+                    } else if (type.equals("delivery_point")) {
+                        DeliveryPoint deliveryPoint = new DeliveryPoint(x, y);
+                        delivery_points.add(deliveryPoint);
+                        gridPane.add(deliveryPoint, x, y);
+                    } else if (type.equals("wall")) {
                         Wall wall = new Wall(x, y);
                         walls.add(wall);
                         gridPane.add(wall, x, y);
+                    } else {
+                        gridPane.add(new EmptyCell(), x, y);
                     }
                 }
             }
@@ -92,13 +89,6 @@ public class MapLoader {
         }
 
         return root;
-    }
-
-    private static Cell createCell(String type) {
-        return switch (type) {
-            case "delivery_point" -> new DeliveryPoint();
-            default -> new EmptyCell();
-        };
     }
 
     private static void drawPlayer(Player player, boolean playerStartingPosition, GridPane gridPane) {
@@ -230,8 +220,17 @@ public class MapLoader {
             gridPane.getChildren().remove(crate);
             gridPane.add(crate, crate.getX(), crate.getY());
 
-            if (winX == crate.getX() && winY == crate.getY()) {
-                System.out.println("Game won!");
+            int placedCrates = 0;
+
+            for (DeliveryPoint deliveryPoint : delivery_points) {
+                for (Crate cratesis: crates) {
+                    if (deliveryPoint.getX() == cratesis.getX() && deliveryPoint.getY() == cratesis.getY()) {
+                        placedCrates++;
+                    }
+                }
+            }
+
+            if (placedCrates == delivery_points.size()) {
                 Label label = new Label("Game won!");
                 label.setStyle("-fx-font-weight: bold; -fx-font-size: 30px; -fx-text-fill: white;");
 
