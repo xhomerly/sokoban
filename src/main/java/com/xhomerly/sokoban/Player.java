@@ -41,8 +41,7 @@ public class Player extends Cell {
         Scene scene = new Scene(level);
         scene.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                //TODO: vymyslet poradne
-                System.exit(0);
+                Application.loadMenu();
             }
             if (event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
                 MapLoader.movePlayer("W");
