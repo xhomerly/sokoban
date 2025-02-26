@@ -18,7 +18,7 @@ public class Player extends Cell {
     }
 
     private static Image loadImage() {
-        return new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/Player/player_01.png")));
+        return new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/player.png")));
     }
 
     public static int getX() {
