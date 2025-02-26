@@ -1,6 +1,11 @@
 package com.xhomerly.sokoban;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,9 +23,14 @@ public class MapLoader {
     static List<Wall> walls = new ArrayList<>();
     static GridPane gridPane = new GridPane();
     static int winX, winY;
+    static StackPane root = new StackPane();
 
-    public static GridPane loadMap(String filePath) {
+    public static StackPane loadMap(String filePath) {
         try {
+            gridPane = new GridPane(); // Reset grid pane
+            root.getChildren().clear(); // Clear previous content
+            root.getChildren().add(gridPane); // Add game grid
+
             File file = new File(filePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -81,7 +91,7 @@ public class MapLoader {
             e.printStackTrace();
         }
 
-        return gridPane;
+        return root;
     }
 
     private static Cell createCell(String type) {
@@ -222,6 +232,17 @@ public class MapLoader {
 
             if (winX == crate.getX() && winY == crate.getY()) {
                 System.out.println("Game won!");
+                Label label = new Label("Game won!");
+                label.setStyle("-fx-font-weight: bold; -fx-font-size: 30px; -fx-text-fill: white;");
+
+                StackPane wonOverlay = new StackPane();
+                wonOverlay.getChildren().add(label);
+                wonOverlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5)");
+                root.getChildren().add(wonOverlay);
+
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Application.loadMenu()));
+                timeline.setCycleCount(1);
+                timeline.play();
             }
         }
     }
