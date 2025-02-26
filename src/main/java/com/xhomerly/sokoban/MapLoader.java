@@ -112,7 +112,6 @@ public class MapLoader {
                 }
 
                 if (crateToMove != null) {
-                    //TODO: co tohle kurva chceckuje?
                     boolean canMove = isCellEmpty(crateToMove.getX(), crateToMove.getY()-1);
 
                     if (canMove) {
