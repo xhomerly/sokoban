@@ -47,7 +47,10 @@ public class Menu {
         Button level4 = new Button("Level 4");
         level4.setOnAction(_ -> startLevel(4));
 
-        levelLayout.getChildren().addAll(level1, level2, level3, level4);
+        Button level5 = new Button("Level 5");
+        level5.setOnAction(_ -> startLevel(5));
+
+        levelLayout.getChildren().addAll(level1, level2, level3, level4, level5);
 
         Scene levelScene = new Scene(levelLayout, 250, 300);
         stage.setScene(levelScene);
@@ -62,6 +65,7 @@ public class Menu {
             case 2 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_02.xml");
             case 3 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_03.xml");
             case 4 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_04.xml");
+            case 5 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_05.xml");
         }
 
         Scene scene = Player.handleInput(level);
