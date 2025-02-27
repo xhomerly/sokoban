@@ -3,6 +3,7 @@ package com.xhomerly.sokoban;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -16,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MapLoader {
     static Player player;
@@ -24,6 +26,7 @@ public class MapLoader {
     static List<DeliveryPoint> delivery_points = new ArrayList<>();
     static GridPane gridPane = new GridPane();
     static StackPane root = new StackPane();
+    static List<Crate> deliveredCrates = new ArrayList<>();
 
     public static StackPane loadMap(String filePath) {
         try {
@@ -221,12 +224,22 @@ public class MapLoader {
             gridPane.add(crate, crate.getX(), crate.getY());
 
             int placedCrates = 0;
+            deliveredCrates.clear();
 
             for (DeliveryPoint deliveryPoint : delivery_points) {
-                for (Crate cratesis: crates) {
+                for (Crate cratesis : crates) {
                     if (deliveryPoint.getX() == cratesis.getX() && deliveryPoint.getY() == cratesis.getY()) {
                         placedCrates++;
+                        deliveredCrates.add(cratesis);
                     }
+                }
+            }
+
+            for (Crate cratesus : crates) {
+                if (deliveredCrates.contains(cratesus)) {
+                    cratesus.getImageView().setImage(new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/delivered_crate.png"))));
+                } else {
+                    cratesus.getImageView().setImage(new Image(Objects.requireNonNull(Crate.class.getResourceAsStream("images/crate.png"))));
                 }
             }
 
