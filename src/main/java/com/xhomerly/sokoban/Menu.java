@@ -8,9 +8,12 @@ import javafx.stage.Stage;
 
 public class Menu {
     private final Stage stage;
+    private static Menu instance;
+    private static int levelNumberis;
 
     public Menu(Stage stage) {
         this.stage = stage;
+        instance = this;
     }
 
     public void show() {
@@ -58,6 +61,8 @@ public class Menu {
 
     public void startLevel(int levelNumber) {
         StackPane level = null;
+        MapLoader.resetMap();
+        levelNumberis = levelNumber;
 
         switch (levelNumber) {
             case 1 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_01.xml");
@@ -70,5 +75,16 @@ public class Menu {
         Scene scene = Player.handleInput(level);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void startLevelFromDifferentClass() {
+        if (instance != null && levelNumberis <= 4) {
+            instance.startLevel(levelNumberis+1);
+        } else if (instance != null) {
+            instance.show();
+            levelNumberis = 0;
+        } else {
+            System.err.println("Error: Menu instance is not initialized!");
+        }
     }
 }

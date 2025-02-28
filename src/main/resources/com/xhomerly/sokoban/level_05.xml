@@ -30,7 +30,7 @@
     <tile x="4" y="2" crate_starting_position="true" />
     <tile x="5" y="2" crate_starting_position="true" />
     <tile x="6" y="2" crate_starting_position="true" />
-    <tile x="7" y="2" crate_starting_position="true" />
+    <tile x="7" y="2" />
     <tile x="8" y="2" />
     <tile x="9" y="2" type="wall" />
 
@@ -83,7 +83,7 @@
     <tile x="2" y="7" type="wall" />
     <tile x="3" y="7" type="delivery_point" />
     <tile x="4" y="7" type="delivery_point" />
-    <tile x="5" y="7" type="delivery_point" />
+    <tile x="5" y="7" />
     <tile x="6" y="7" type="wall" />
     <tile x="7" y="7" />
     <tile x="8" y="7" />

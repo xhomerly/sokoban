@@ -244,15 +244,17 @@ public class MapLoader {
             }
 
             if (placedCrates == delivery_points.size()) {
-                Label label = new Label("Game won!");
+                Label label = new Label("Level won!");
                 label.setStyle("-fx-font-weight: bold; -fx-font-size: 30px; -fx-text-fill: white;");
 
                 StackPane wonOverlay = new StackPane();
                 wonOverlay.getChildren().add(label);
                 wonOverlay.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5)");
-                root.getChildren().add(wonOverlay);
 
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Application.loadMenu()));
+                root.getChildren().add(wonOverlay);
+                wonOverlay.toFront();
+
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Menu.startLevelFromDifferentClass()));
                 timeline.setCycleCount(1);
                 timeline.play();
             }
@@ -271,5 +273,21 @@ public class MapLoader {
             }
         }
         return true;
+    }
+
+    public static void resetMap() {
+        // Clear all lists
+        crates.clear();
+        walls.clear();
+        delivery_points.clear();
+        deliveredCrates.clear();
+
+        // Reset grid and root
+        gridPane.getChildren().clear();
+        root = new StackPane();
+        root.getChildren().add(gridPane);
+
+        // Reset player reference
+        player = null;
     }
 }
