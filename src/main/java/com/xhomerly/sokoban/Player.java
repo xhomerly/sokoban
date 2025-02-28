@@ -55,6 +55,9 @@ public class Player extends Cell {
             if (event.getCode() == KeyCode.D || event.getCode() == KeyCode.RIGHT) {
                 MapLoader.movePlayer("D");
             }
+            if (event.isControlDown() && event.getCode() == KeyCode.R) {
+                Menu.startLevelFromDifferentClass(true);
+            }
         });
         return scene;
     }

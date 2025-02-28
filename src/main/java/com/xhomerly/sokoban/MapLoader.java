@@ -254,7 +254,7 @@ public class MapLoader {
                 root.getChildren().add(wonOverlay);
                 wonOverlay.toFront();
 
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Menu.startLevelFromDifferentClass()));
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Menu.startLevelFromDifferentClass(false)));
                 timeline.setCycleCount(1);
                 timeline.play();
             }

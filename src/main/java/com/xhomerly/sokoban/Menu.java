@@ -77,9 +77,11 @@ public class Menu {
         stage.show();
     }
 
-    public static void startLevelFromDifferentClass() {
-        if (instance != null && levelNumberis <= 4) {
+    public static void startLevelFromDifferentClass(boolean isReset) {
+        if (instance != null && levelNumberis <= 4 && !isReset) {
             instance.startLevel(levelNumberis+1);
+        } else if (instance != null && levelNumberis <= 5) {
+            instance.startLevel(levelNumberis);
         } else if (instance != null) {
             instance.show();
             levelNumberis = 0;
