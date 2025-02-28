@@ -48,8 +48,8 @@
     <tile x="0" y="4" type="wall" />
     <tile x="1" y="4" type="wall" />
     <tile x="2" y="4" type="wall" />
-    <tile x="3" y="4" />
-    <tile x="4" y="4" type="wall" />
+    <tile x="3" y="4" type="wall" />
+    <tile x="4" y="4" />
     <tile x="5" y="4" type="wall" />
     <tile x="6" y="4" type="wall" />
     <tile x="7" y="4" type="wall" />
