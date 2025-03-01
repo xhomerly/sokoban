@@ -3,6 +3,7 @@
 <!-- map width and height is set because of filling the whole map with Ground as background -->
 <!-- x & y are for positions on the gridPane -->
 <!-- all available types are: wall, delivery_point, player, crate -->
+<!-- when type is not specified it is EmptyCell -->
 
 <map width="10" height="10">
     <tile x="0" y="0" type="wall" />

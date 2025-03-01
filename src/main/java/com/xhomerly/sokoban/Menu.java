@@ -61,17 +61,10 @@ public class Menu {
     }
 
     public void startLevel(int levelNumber) {
-        StackPane level = null;
         MapLoader.resetMap();
         levelNumberis = levelNumber;
 
-        switch (levelNumber) {
-            case 1 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_01.xml");
-            case 2 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_02.xml");
-            case 3 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_03.xml");
-            case 4 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_04.xml");
-            case 5 -> level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_05.xml");
-        }
+        StackPane level = MapLoader.loadMap("src/main/resources/com/xhomerly/sokoban/level_0" + levelNumber + ".xml");
 
         Scene scene = Player.handleInput(level);
         stage.setScene(scene);
@@ -79,6 +72,7 @@ public class Menu {
         stage.show();
     }
 
+    // handles level restarting and progression
     public static void startLevelFromDifferentClass(boolean isReset) {
         if (instance != null && levelNumberis <= 4 && !isReset) {
             instance.startLevel(levelNumberis+1);

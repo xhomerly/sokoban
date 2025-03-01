@@ -13,8 +13,4 @@ public abstract class Cell extends StackPane {
 
         getChildren().add(imageView);
     }
-
-    public ImageView getImageView() {
-        return (ImageView) getChildren().getFirst();
-    }
 }

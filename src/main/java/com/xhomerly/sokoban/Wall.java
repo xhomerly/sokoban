@@ -1,7 +1,6 @@
 package com.xhomerly.sokoban;
 
 import javafx.scene.image.Image;
-
 import java.util.Objects;
 
 public class Wall extends Cell {

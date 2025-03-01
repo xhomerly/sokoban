@@ -30,9 +30,9 @@ public class MapLoader {
 
     public static StackPane loadMap(String filePath) {
         try {
-            gridPane = new GridPane(); // Reset grid pane
-            root.getChildren().clear(); // Clear previous content
-            root.getChildren().add(gridPane); // Add game grid
+            gridPane = new GridPane();
+            root.getChildren().clear();
+            root.getChildren().add(gridPane);
 
             File file = new File(filePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -275,18 +275,15 @@ public class MapLoader {
     }
 
     public static void resetMap() {
-        // Clear all lists
         crates.clear();
         walls.clear();
         delivery_points.clear();
         deliveredCrates.clear();
 
-        // Reset grid and root
         gridPane.getChildren().clear();
         root = new StackPane();
         root.getChildren().add(gridPane);
 
-        // Reset player reference
         player = null;
     }
 }

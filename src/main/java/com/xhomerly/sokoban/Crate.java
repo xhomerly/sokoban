@@ -1,6 +1,7 @@
 package com.xhomerly.sokoban;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.Objects;
 
@@ -11,6 +12,10 @@ public class Crate extends Cell {
         super(loadImage());
         this.x = x;
         this.y = y;
+    }
+
+    public ImageView getImageView() { // for changing image crate.png to delivered_crate.png and vice versa
+        return (ImageView) getChildren().getFirst();
     }
 
     private static Image loadImage() {

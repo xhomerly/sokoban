@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
 import java.util.Objects;
 
 public class Player extends Cell {
@@ -41,7 +40,7 @@ public class Player extends Cell {
         Scene scene = new Scene(level);
         scene.setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                Application.loadMenu();
+                Application.loadMenu(); // return to the main menu
             }
             if (event.getCode() == KeyCode.W || event.getCode() == KeyCode.UP) {
                 MapLoader.movePlayer("W");
@@ -56,7 +55,7 @@ public class Player extends Cell {
                 MapLoader.movePlayer("D");
             }
             if (event.isControlDown() && event.getCode() == KeyCode.R) {
-                Menu.startLevelFromDifferentClass(true);
+                Menu.startLevelFromDifferentClass(true); // restart the current level
             }
         });
         return scene;
