@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import java.util.Objects;
 
 public class Wall extends Cell {
-    private int x, y;
+    private final int x, y;
 
     public Wall(int x, int y) {
         super(loadImage());

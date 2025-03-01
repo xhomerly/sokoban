@@ -5,16 +5,12 @@ import javafx.scene.image.Image;
 import java.util.Objects;
 
 public class DeliveryPoint extends Cell {
-    private int x, y;
+    private final int x, y;
 
     public DeliveryPoint(int x, int y) {
         super(loadImage());
         this.x = x;
         this.y = y;
-    }
-
-    public DeliveryPoint() {
-        super(loadImage());
     }
 
     private static Image loadImage() {

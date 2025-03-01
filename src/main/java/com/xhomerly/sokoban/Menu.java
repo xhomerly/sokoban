@@ -30,6 +30,7 @@ public class Menu {
 
         Scene menuScene = new Scene(menuLayout, 250, 300);
         stage.setScene(menuScene);
+        stage.setTitle("Sokoban");
         stage.show();
     }
 
@@ -74,6 +75,7 @@ public class Menu {
 
         Scene scene = Player.handleInput(level);
         stage.setScene(scene);
+        stage.setTitle("Sokoban - Level " + levelNumberis);
         stage.show();
     }
 

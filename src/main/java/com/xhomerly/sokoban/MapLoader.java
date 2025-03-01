@@ -62,28 +62,27 @@ public class MapLoader {
                     int y = Integer.parseInt(tile.getAttribute("y"));
                     String type = tile.getAttribute("type");
 
-                    boolean isPlayer = tile.hasAttribute("player_starting_position") &&
-                            tile.getAttribute("player_starting_position").equalsIgnoreCase("True");
-                    boolean isCrate = tile.hasAttribute("crate_starting_position") &&
-                            tile.getAttribute("crate_starting_position").equalsIgnoreCase("True");
-
-                    if (isPlayer) {
-                        player = new Player(x, y);
-                        drawPlayer(player, true, gridPane);
-                    } else if (isCrate) {
-                        Crate crate = new Crate(x, y);
-                        crates.add(crate);
-                        drawCrate(crate, true, gridPane);
-                    } else if (type.equals("delivery_point")) {
-                        DeliveryPoint deliveryPoint = new DeliveryPoint(x, y);
-                        delivery_points.add(deliveryPoint);
-                        gridPane.add(deliveryPoint, x, y);
-                    } else if (type.equals("wall")) {
-                        Wall wall = new Wall(x, y);
-                        walls.add(wall);
-                        gridPane.add(wall, x, y);
-                    } else {
-                        gridPane.add(new EmptyCell(), x, y);
+                    switch (type) {
+                        case "player" -> {
+                            player = new Player(x, y);
+                            drawPlayer(player, true, gridPane);
+                        }
+                        case "crate" -> {
+                            Crate crate = new Crate(x, y);
+                            crates.add(crate);
+                            drawCrate(crate, true, gridPane);
+                        }
+                        case "delivery_point" -> {
+                            DeliveryPoint deliveryPoint = new DeliveryPoint(x, y);
+                            delivery_points.add(deliveryPoint);
+                            gridPane.add(deliveryPoint, x, y);
+                        }
+                        case "wall" -> {
+                            Wall wall = new Wall(x, y);
+                            walls.add(wall);
+                            gridPane.add(wall, x, y);
+                        }
+                        default -> gridPane.add(new EmptyCell(), x, y);
                     }
                 }
             }
@@ -254,7 +253,7 @@ public class MapLoader {
                 root.getChildren().add(wonOverlay);
                 wonOverlay.toFront();
 
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), _ -> Menu.startLevelFromDifferentClass(false)));
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.25), _ -> Menu.startLevelFromDifferentClass(false)));
                 timeline.setCycleCount(1);
                 timeline.play();
             }

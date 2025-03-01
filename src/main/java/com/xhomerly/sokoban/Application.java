@@ -11,7 +11,6 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) {
         primaryStage = stage;
         stage.getIcons().add(new Image(Objects.requireNonNull(Application.class.getResourceAsStream("icon.png"))));
-        stage.setTitle("Sokoban");
         stage.setResizable(false);
 
         loadMenu();

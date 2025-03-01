@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
+<!-- map width and height is set because of filling the whole map with Ground as background -->
+<!-- x & y are for positions on the gridPane -->
+<!-- all available types are: wall, delivery_point, player, crate -->
+
 <map width="10" height="10">
     <tile x="0" y="0" type="wall" />
     <tile x="1" y="0" type="wall" />
@@ -16,7 +20,7 @@
     <tile x="1" y="1" />
     <tile x="2" y="1" />
     <tile x="3" y="1" />
-    <tile x="4" y="1" player_starting_position="true" />
+    <tile x="4" y="1" type="player" />
     <tile x="5" y="1" />
     <tile x="6" y="1" />
     <tile x="7" y="1" />
@@ -25,11 +29,11 @@
 
     <tile x="0" y="2" type="wall" />
     <tile x="1" y="2" />
-    <tile x="2" y="2" crate_starting_position="true" />
-    <tile x="3" y="2" crate_starting_position="true" />
-    <tile x="4" y="2" crate_starting_position="true" />
-    <tile x="5" y="2" crate_starting_position="true" />
-    <tile x="6" y="2" crate_starting_position="true" />
+    <tile x="2" y="2" type="crate" />
+    <tile x="3" y="2" type="crate" />
+    <tile x="4" y="2" type="crate" />
+    <tile x="5" y="2" type="crate" />
+    <tile x="6" y="2" type="crate" />
     <tile x="7" y="2" />
     <tile x="8" y="2" />
     <tile x="9" y="2" type="wall" />
